@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Outage Prediction</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+            <a href="/predict" class="active">Outage Prediction</a>
+            <a href="/instructions">Instructions</a>
+        </div>
+    </div>      
+    
+    <style>
+        .navbar {
+            background-color: #343a40;
+            width: 100%;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .navbar a {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            border-left: 1px solid #495057;
+        }
+        
+        .navbar a:first-child {
+            border-left: none;
+        }
+        
+        .navbar a:hover {
+            background-color: #495057;
+        }
+        
+        .navbar a.active {
+            background-color: #007bff;
+        }        
+    </style>
+   
+    <div class="centered-logo">
+        <img src="{{ url_for('static', filename='media/Itty-Bitty.png') }}" alt="Itty-Bitty Electric Company" class="logo-small">
+    </div>    
+
+    <style>
+        .centered-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 170px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-small {
+            height: 120px;
+            width: auto;
+        }
+                
+    </style>    
+
+    <form method="POST" action="/predict">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Customer Count:</label>
+                <input type="number" name="customer_count" step="1" min="0" required placeholder="Enter Customer Count">
+            </div>
+    
+            <div class="form-group">
+                <label>Circuit Miles:</label>
+                <input type="number" name="circuit_miles" step="0.1" min="0" required placeholder="Enter Circuit Miles">
+            </div>
+    
+            <div class="form-group">
+                <label>Circuit Name:</label>
+                <select name="circuit_name" required>
+                    {% for c in circuit_names %}
+                    <option value="{{ c }}">{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>Outage Cause:</label>
+                <select name="outage_cause" required>
+                    {% for c in outage_causes %}
+                    <option value="{{ c }}">{{ c }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>KV Level:</label>
+                <select name="kv_level" required>
+                    {% for kv in kv_levels %}
+                    <option value="{{ kv }}">{{ kv }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>Region:</label>
+                <select name="region" required>
+                    {% for r in regions %}
+                    <option value="{{ r }}">{{ r }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>Month:</label>
+                <select name="month" required>
+                    {% for m in months %}
+                    <option value="{{ m }}">{{ m }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>Day of Week:</label>
+                <select name="day_of_week" required>
+                    {% for d in days %}
+                    <option value="{{ d }}">{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    
+        <div class="button-container">
+            <input type="submit" value="Predict">
+        </div>
+    </form> 
+
+    <style>
+        body {
+            font-family: Georgia, serif; /* Set the font to Georgia */
+            font-size: 0.9rem; /* Adjust the font size to make it smaller */
+            background-color: #d1e8f0;
+        }
+    
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: auto;
+            padding: 2rem;
+        }
+    
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+    
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            font-size: 0.9rem; /* Adjust label font size */
+        }
+    
+        input, select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 0.9rem; /* Adjust input and select font size */
+        }
+    
+        input::placeholder, select::placeholder {
+            font-family: Georgia, serif; /* Set placeholder font to Georgia */
+            font-size: 0.9rem; /* Adjust placeholder font size */
+            color: #999; /* Adjust placeholder text color */
+        }
+    
+        .button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+    
+        input[type="submit"] {
+            padding: 0.75rem 2rem;
+            font-size: 1rem; /* Adjust submit button font size */
+            font-family: Georgia, serif;
+            border: none;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            font-family: Georgia, serif;
+            font-size: 0.9rem;
+            color: #333;
+        }
+    
+        select option {
+            font-family: Georgia, serif;
+            font-size: 0.9rem;
+            color: #333;
+        }
+    </style>          
+</body>
+</html>

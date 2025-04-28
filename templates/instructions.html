@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instructions - Outage Prediction</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #d1e8f0;
+            margin-top: 5rem;
+        }
+
+        .navbar {
+            background-color: #343a40;
+            width: 100%;
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .navbar a {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            border-left: 1px solid #495057;
+        }
+
+        .navbar a:first-child {
+            border-left: none;
+        }
+
+        .navbar a:hover {
+            background-color: #495057;
+        }
+
+        .navbar a.active {
+            background-color: #007bff;
+        }
+
+        .container {
+            text-align: center;
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .container ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 2.2rem;
+            margin-top: 2.2rem;
+        }
+
+        .container li {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .container p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-top: 10rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+            <a href="/predict">Outage Prediction</a>
+            <a href="/instructions" class="active">Instructions</a>
+        </div>
+    </div>
+
+    <h2>Instructions for Outage Prediction</h2>
+    <div class="container">
+        <!--<h2>Instructions for Outage Prediction</h2>-->
+
+        <p>Welcome to the Outage Prediction tool! Please follow the steps below to use the tool effectively:</p>
+        
+        <ul>
+            <li><strong>Customer Count:</strong> Enter the number of customers that are served in the area.</li>
+            <li><strong>Circuit Miles:</strong> Enter the total miles of the circuit where the outage occurred.</li>
+            <li><strong>Circuit Name:</strong> Select the name of the circuit from the dropdown menu.</li>
+            <li><strong>Outage Cause:</strong> Choose the cause of the outage from the list.</li>
+            <li><strong>KV Level:</strong> Select the voltage level of the circuit.</li>
+            <li><strong>Region:</strong> Select the geographical region of the outage.</li>
+            <li><strong>Month:</strong> Select the month when the outage occurred.</li>
+            <li><strong>Day of Week:</strong> Select the day of the week when the outage took place.</li>
+        </ul>
+
+        <p>After filling out the form, click on the "Predict" button to receive the outage prediction results. These results will help estimate the duration of the outage and how many customers are affected. If you need more information, please refer to the detailed instructions or contact support.</p>
+    </div>
+</body>
+</html>
